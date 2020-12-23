@@ -14,7 +14,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/auth" component={Auth} />
-      <Route path="/" exact component={Admin} />
+      <Route path="/" component={Admin} />
 
       <Redirect from="*" to="/" />
     </Switch>
