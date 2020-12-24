@@ -79,7 +79,7 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/dashboard") !== -1
+                    (window.location.href.indexOf("/") !== -1
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-600")
                   }
@@ -88,7 +88,7 @@ export default function Sidebar() {
                   <i
                     className={
                       "fas fa-tv mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/dashboard") !== -1
+                      (window.location.href.indexOf("/") === -1
                         ? "opacity-75"
                         : "text-gray-400")
                     }
@@ -101,7 +101,7 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/settings") !== -1
+                    (window.location.href.indexOf("/stats") !== -1
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-600")
                   }
@@ -109,8 +109,8 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-tools mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/settings") !== -1
+                      "fas fa-hand-holding-usd mr-2 text-sm " +
+                      (window.location.href.indexOf("/stats") !== -1
                         ? "opacity-75"
                         : "text-gray-400")
                     }
@@ -131,7 +131,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "fas fa-infinity mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/tables") !== -1
                         ? "opacity-75"
                         : "text-gray-400")
@@ -145,7 +145,7 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/maps") !== -1
+                    (window.location.href.indexOf("/trades") !== -1
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-600")
                   }
@@ -153,8 +153,8 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-map-marked mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/maps") !== -1
+                      "fas fa-file-invoice-dollar mr-2 text-sm " +
+                      (window.location.href.indexOf("/trades") !== -1
                         ? "opacity-75"
                         : "text-gray-400")
                     }
@@ -168,7 +168,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Auth Layout Pages
+              ABS Info
             </h6>
             {/* Navigation */}
 
@@ -176,20 +176,20 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link
                   className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                  to="/auth/login"
+                  to="/faq"
                 >
-                  <i className="fas fa-fingerprint text-gray-500 mr-2 text-sm"></i>{" "}
-                  Login
+                  <i className="fas fa-question-circle text-gray-500 mr-2 text-sm"></i>{" "}
+                  FAQ
                 </Link>
               </li>
 
               <li className="items-center">
                 <Link
                   className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                  to="/auth/register"
+                  to="/updates"
                 >
-                  <i className="fas fa-clipboard-list text-gray-400 mr-2 text-sm"></i>{" "}
-                  Register
+                  <i className="fas fa-info-circle text-gray-400 mr-2 text-sm"></i>{" "}
+                  Updates
                 </Link>
               </li>
             </ul>
@@ -198,125 +198,68 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              No Layout Pages
+              ABS Links
             </h6>
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                <Link
+                <a
                   className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                  to="/landing"
+                  href="https://twitter.com/DeFi_Absorber"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <i className="fas fa-newspaper text-gray-500 mr-2 text-sm"></i>{" "}
-                  Landing Page
-                </Link>
+                  <i className="fab fa-twitter text-gray-500 mr-2 text-sm"></i>{" "}
+                  Twitter
+                </a>
               </li>
 
               <li className="items-center">
-                <Link
+                <a
                   className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                  to="/profile"
-                >
-                  <i className="fas fa-user-circle text-gray-500 mr-2 text-sm"></i>{" "}
-                  Profile Page
-                </Link>
-              </li>
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Documentation
-            </h6>
-            {/* Navigation */}
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/colors/notus"
+                  href="https://absorberprotocol.medium.com/"
                   target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
+                  rel="noopener noreferrer"
                 >
-                  <i className="fas fa-paint-brush mr-2 text-gray-400 text-base"></i>
-                  Styles
+                  <i className="fab fa-medium-m text-gray-500 mr-2 text-sm"></i>{" "}
+                  Medium
                 </a>
               </li>
 
-              <li className="inline-flex">
+              <li className="items-center">
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/alerts/notus"
+                  className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
+                  href="https://t.me/AbsorberProtocol"
                   target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
+                  rel="noopener noreferrer"
                 >
-                  <i className="fab fa-css3-alt mr-2 text-gray-400 text-base"></i>
-                  CSS Components
+                  <i className="fab fa-telegram-plane text-gray-500 mr-2 text-sm"></i>{" "}
+                  Telegram
                 </a>
               </li>
 
-              <li className="inline-flex">
+              <li className="items-center">
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus"
+                  className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
+                  href="https://discord.gg/MK4s9vDGEY"
                   target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
+                  rel="noopener noreferrer"
                 >
-                  <i className="fab fa-angular mr-2 text-gray-400 text-base"></i>
-                  Angular
+                  <i className="fab fa-discord text-gray-500 mr-2 text-sm"></i>{" "}
+                  Discord
                 </a>
               </li>
 
-              <li className="inline-flex">
+              <li className="items-center">
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus"
+                  className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
+                  href="https://etherscan.io/token/0xf4c05296c449edcee3e3f1524fac919510b168a2"
                   target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
+                  rel="noopener noreferrer"
                 >
-                  <i className="fab fa-js-square mr-2 text-gray-400 text-base"></i>
-                  Javascript
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-react mr-2 text-gray-400 text-base"></i>
-                  NextJS
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-react mr-2 text-gray-400 text-base"></i>
-                  React
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fas fa-link mr-2 text-gray-400 text-base"></i>
-                  Svelte
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-vuejs mr-2 text-gray-400 text-base"></i>
-                  VueJS
+                  <i className="fab fa-ethereum text-gray-500 mr-2 text-sm"></i>{" "}
+                  Etherscan
                 </a>
               </li>
             </ul>
