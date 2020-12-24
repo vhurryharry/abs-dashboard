@@ -12,10 +12,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import { tokenAddress, tokenBurnAddresses, ethplorerApiKey } from "./constants";
+
 const coingeckoApi = `https://api.coingecko.com/api/v3/coins/absorber?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
 const ethplorerApi = `https://api.ethplorer.io`;
-const ethplorerApiKey = `EK-v1Yoo-EUGHQUS-S1CUm`;
-const tokenAddress = `0xf4c05296c449edcee3e3f1524fac919510b168a2`;
 
 const useMarketInformation = () => {
   const [marketInformation, setMarketInformation] = useState({});
@@ -35,7 +35,7 @@ const useMarketInformation = () => {
     });
   };
 
-  const getEthExplorerInfo = () => {
+  const getTokenHolders = () => {
     return new Promise((resolve, reject) => {
       axios
         .get(
@@ -50,19 +50,47 @@ const useMarketInformation = () => {
     });
   };
 
+  const getUniV2Info = () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${ethplorerApi}/getAddressInfo/${tokenAddress}?apiKey=${ethplorerApiKey}`
+        )
+        .then(({ data }) => {
+          const uniToken = data.tokens.find(
+            (token) => token.tokenInfo.symbol == "UNI-V2"
+          );
+          resolve(uniToken);
+        })
+        .catch((e) => {
+          reject(e.message);
+        });
+    });
+  };
+
   const updateMarketInformation = () => {
     setLoading(true);
     setError("");
 
-    Promise.all([getCoingeckoInfo(), getEthExplorerInfo()])
+    Promise.all([getCoingeckoInfo(), getTokenHolders(), getUniV2Info()])
       .then((results) => {
         setError("");
-        const circSupply = parseInt(
+        const contractBurnRate =
+          results[2].balance / results[2].tokenInfo.totalSupply;
+        const uniswapBalance = results[1].find(
+          (holder) => holder.address == results[2].tokenInfo.address
+        ).balance;
+        const contractBurnAmount = (uniswapBalance * contractBurnRate) / 1e18;
+
+        const circSupply =
           results[1].reduce(
-            (prev, cur) => prev + BigInt(cur.balance) / BigInt(1e18),
-            0n
-          )
-        );
+            (prev, cur) =>
+              prev +
+              (tokenBurnAddresses.includes(cur.address)
+                ? 0
+                : cur.balance / 1e18),
+            0
+          ) - contractBurnAmount;
 
         const price = +results[0].current_price.usd.toFixed(4);
 
@@ -75,6 +103,7 @@ const useMarketInformation = () => {
         });
       })
       .catch((e) => {
+        console.error(e);
         setError(e);
       })
       .finally(() => {

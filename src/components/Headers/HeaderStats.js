@@ -19,7 +19,9 @@ const HeaderStats = () => {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Market Cap"
-                  statTitle={marketInformation.marketCap?.toLocaleString()}
+                  statTitle={
+                    "$" + marketInformation.marketCap?.toLocaleString()
+                  }
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-red-500"
                 />
