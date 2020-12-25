@@ -3,7 +3,7 @@ import React from "react";
 // components
 
 import CardStats from "components/Cards/CardStats.js";
-import useMarketInformation from "services/Market";
+import { useMarketInformation } from "services/Market";
 
 const HeaderStats = () => {
   const { marketInformation, loading } = useMarketInformation();

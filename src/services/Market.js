@@ -14,10 +14,10 @@ import axios from "axios";
 
 import { tokenAddress, tokenBurnAddresses, ethplorerApiKey } from "./constants";
 
-const coingeckoApi = `https://api.coingecko.com/api/v3/coins/absorber?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
+const coingeckoApi = `https://api.coingecko.com/api/v3/coins/absorber`;
 const ethplorerApi = `https://api.ethplorer.io`;
 
-const useMarketInformation = () => {
+export const useMarketInformation = () => {
   const [marketInformation, setMarketInformation] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -25,7 +25,9 @@ const useMarketInformation = () => {
   const getCoingeckoInfo = () => {
     return new Promise((resolve, reject) => {
       axios
-        .get(coingeckoApi)
+        .get(
+          `${coingeckoApi}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
+        )
         .then(({ data }) => {
           resolve(data.market_data);
         })
@@ -112,13 +114,59 @@ const useMarketInformation = () => {
   };
 
   useEffect(() => {
-    if (coingeckoApi) {
-      updateMarketInformation();
-      setInterval(updateMarketInformation, 600000);
-    }
+    updateMarketInformation();
+    setInterval(updateMarketInformation, 600000);
   }, []);
 
   return { marketInformation, error, loading };
 };
 
-export default useMarketInformation;
+export const useHistoricalData = () => {
+  const [historicalData, setHistoricalData] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const getHistoricalData = (currency = "usd") => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${coingeckoApi}/market_chart?vs_currency=${currency}&days=7&interval=daily`
+        )
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch((e) => {
+          reject(e.message);
+        });
+    });
+  };
+
+  const updateHistoricalData = () => {
+    setLoading(true);
+    setError("");
+
+    Promise.all([getHistoricalData()])
+      .then((results) => {
+        setHistoricalData({
+          usd: results[0],
+        });
+      })
+      .catch((e) => {
+        setError(e);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    updateHistoricalData();
+    setInterval(updateHistoricalData, 24 * 60 * 60 * 1000);
+  }, []);
+
+  return {
+    historicalData,
+    loading,
+    error,
+  };
+};

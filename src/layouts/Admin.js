@@ -25,11 +25,11 @@ export default function Admin() {
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Switch>
-            <Route path="/" exact component={Dashboard} />
+            <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/blackhole" exact component={Maps} />
             <Route path="/stats" exact component={Settings} />
             <Route path="/trades" exact component={Tables} />
-            <Redirect from="*" to="/" />
+            <Redirect from="*" to="/dashboard" />
           </Switch>
           <FooterAdmin />
         </div>
