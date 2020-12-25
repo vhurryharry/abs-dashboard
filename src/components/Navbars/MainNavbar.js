@@ -17,13 +17,13 @@ const Navbar = () => {
           {/* Form */}
           <div className="md:flex hidden uppercase lg:ml-auto mr-3">
             <a
-              className="bg-white text-black text-sm hidden lg:flex font-semibold py-2 px-4 rounded flex-row flex-wrap items-center "
+              className="bg-white text-black text-sm hidden lg:flex font-semibold py-2 px-4 rounded flex-row flex-wrap items-center shadow-lg"
               href="https://info.uniswap.org/pair/0x39c99091c0883287fea9e2f33529a3b8eed289de"
               target="_blank"
               rel="noopener noreferrer"
             >
               <img
-                className="h-30-px w-auto rounded-full align-middle border-none shadow-lg mr-2"
+                className="h-30-px w-auto rounded-full align-middle border-none mr-2"
                 src="images/uniswap.svg"
               />
               Uniswap

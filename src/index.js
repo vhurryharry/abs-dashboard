@@ -12,22 +12,29 @@ import Info from "layouts/Info.js";
 
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
+import Web3Provider, { Connectors } from "web3-react";
 
 const client = new ApolloClient({
   uri: "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
   cache: new InMemoryCache(),
 });
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/auth" component={Info} />
-        <Route path="/" component={Main} />
+const { InjectedConnector } = Connectors;
+const MetaMask = new InjectedConnector({ supportedNetworks: [1] });
+const connectors = { MetaMask };
 
-        <Redirect from="*" to="/" />
-      </Switch>
-    </BrowserRouter>
-  </ApolloProvider>,
+ReactDOM.render(
+  <Web3Provider connectors={connectors} libraryName="ethers.js">
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/auth" component={Info} />
+          <Route path="/" component={Main} />
+
+          <Redirect from="*" to="/" />
+        </Switch>
+      </BrowserRouter>
+    </ApolloProvider>
+  </Web3Provider>,
   document.getElementById("root")
 );

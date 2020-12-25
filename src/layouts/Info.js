@@ -20,7 +20,7 @@ const Info = () => {
           <div
             className="absolute top-0 w-full h-full bg-gray-900 bg-no-repeat bg-full"
             style={{
-              backgroundImage: "url(" + require("assets/img/uniswap.svg") + ")",
+              backgroundImage: "public/uniswap.svg",
             }}
           ></div>
           <Switch>

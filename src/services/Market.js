@@ -112,7 +112,6 @@ export const useMarketInformation = () => {
         });
       })
       .catch((e) => {
-        console.error(e);
         setError(e);
       })
       .finally(() => {
@@ -221,6 +220,69 @@ export const useCommunityData = () => {
 
   return {
     communityData,
+    loading,
+    error,
+  };
+};
+
+export const useAccountInfo = (address = "") => {
+  const [accountInfo, setAccountInfo] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const getAccountInfo = () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${ethplorerApi}/getAddressInfo/${address}?apiKey=${ethplorerApiKey}`
+        )
+        .then(({ data }) => {
+          resolve({
+            abs: data.tokens.find((token) => token.tokenInfo.symbol == "ABS"),
+            eth: data.ETH,
+          });
+        })
+        .catch((e) => {
+          reject(e.message);
+        });
+    });
+  };
+
+  const updateAccountInfo = () => {
+    setLoading(true);
+    setError("");
+
+    Promise.all([getAccountInfo()])
+      .then((results) => {
+        const accountInfo = {
+          abs: {
+            ...results[0].abs,
+            balance: +(results[0].abs.balance / 1e18).toFixed(5),
+          },
+          eth: {
+            ...results[0].eth,
+            balance: +results[0].eth.balance.toFixed(5),
+          },
+        };
+        setAccountInfo(accountInfo);
+      })
+      .catch((e) => {
+        setError(e);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    if (address && address !== "") {
+      updateAccountInfo();
+      setInterval(updateAccountInfo, 60000);
+    }
+  }, [address]);
+
+  return {
+    accountInfo,
     loading,
     error,
   };
