@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import moment from "moment";
 
-import {
-  tokenAddress,
-  tokenBurnAddresses,
-  ethplorerApiKey,
-  uniswapPairAddress,
-} from "./constants";
+import { tokenBurnAddresses, uniswapPairAddress } from "./constants";
 
-const coingeckoApi = `https://api.coingecko.com/api/v3/coins/absorber`;
-const ethplorerApi = `https://api.ethplorer.io`;
+import {
+  getCoingeckoInfo,
+  getTokenHolders,
+  getUniV2Info,
+  getHistoricalData,
+  getCommunityData,
+  getAccountInfo,
+  getTransactionHistory,
+} from "./utils";
 
 export const useMarketInformation = () => {
   const [marketInformation, setMarketInformation] = useState({
@@ -23,54 +24,6 @@ export const useMarketInformation = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  const getCoingeckoInfo = () => {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(
-          `${coingeckoApi}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
-        )
-        .then(({ data }) => {
-          resolve(data.market_data);
-        })
-        .catch((e) => {
-          reject(e.message);
-        });
-    });
-  };
-
-  const getTokenHolders = () => {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(
-          `${ethplorerApi}/getTopTokenHolders/${tokenAddress}?apiKey=${ethplorerApiKey}&limit=1000`
-        )
-        .then(({ data }) => {
-          resolve(data.holders);
-        })
-        .catch((e) => {
-          reject(e.message);
-        });
-    });
-  };
-
-  const getUniV2Info = () => {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(
-          `${ethplorerApi}/getAddressInfo/${tokenAddress}?apiKey=${ethplorerApiKey}`
-        )
-        .then(({ data }) => {
-          const uniToken = data.tokens.find(
-            (token) => token.tokenInfo.symbol == "UNI-V2"
-          );
-          resolve(uniToken);
-        })
-        .catch((e) => {
-          reject(e.message);
-        });
-    });
-  };
 
   const updateMarketInformation = () => {
     setLoading(true);
@@ -127,21 +80,6 @@ export const useHistoricalData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const getHistoricalData = (currency = "usd") => {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(
-          `${coingeckoApi}/market_chart?vs_currency=${currency}&days=7&interval=daily`
-        )
-        .then(({ data }) => {
-          resolve(data);
-        })
-        .catch((e) => {
-          reject(e.message);
-        });
-    });
-  };
-
   const updateHistoricalData = () => {
     setLoading(true);
     setError("");
@@ -177,21 +115,6 @@ export const useCommunityData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const getCommunityData = (currency = "usd") => {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(
-          `${coingeckoApi}?localization=false&tickers=false&market_data=false&community_data=true&developer_data=false&sparkline=false`
-        )
-        .then(({ data }) => {
-          resolve(data.community_data);
-        })
-        .catch((e) => {
-          reject(e.message);
-        });
-    });
-  };
-
   const updateCommunityData = () => {
     setLoading(true);
     setError("");
@@ -225,44 +148,11 @@ export const useAccountInfo = (address = "") => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const getAccountInfo = () => {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(
-          `${ethplorerApi}/getAddressInfo/${address}?apiKey=${ethplorerApiKey}`
-        )
-        .then(({ data }) => {
-          resolve({
-            abs: data.tokens.find((token) => token.tokenInfo.symbol == "ABS"),
-            eth: data.ETH,
-          });
-        })
-        .catch((e) => {
-          reject(e.message);
-        });
-    });
-  };
-
-  const getTransactionHistory = (timestamp = null) => {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(
-          `${ethplorerApi}/getAddressHistory/${address}?apiKey=${ethplorerApiKey}&token=${tokenAddress}`
-        )
-        .then(({ data }) => {
-          resolve(data.operations);
-        })
-        .catch((e) => {
-          reject(e.message);
-        });
-    });
-  };
-
   const updateAccountInfo = () => {
     setLoading(true);
     setError("");
 
-    Promise.all([getAccountInfo(), getTransactionHistory()])
+    Promise.all([getAccountInfo(address), getTransactionHistory(address)])
       .then((results) => {
         const accountInfo = {
           abs: {
@@ -312,6 +202,56 @@ export const useAccountInfo = (address = "") => {
 
   return {
     accountInfo,
+    loading,
+    error,
+  };
+};
+
+export const useBlackholeInfo = () => {
+  const [blackholeInfo, setBlackholeInfo] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const updateBlackholeInfo = () => {
+    setLoading(true);
+    setError("");
+
+    Promise.all([
+      getAccountInfo(tokenBurnAddresses[0]),
+      getAccountInfo(tokenBurnAddresses[1]),
+      getTransactionHistory(tokenBurnAddresses[0]),
+    ])
+      .then((results) => {
+        const balance = +(
+          results[0].abs.balance / 1e18 +
+          results[1].abs.balance / 1e18
+        ).toFixed(5);
+        const operations = results[2].map((operation) => ({
+          ...operation,
+          value: +(operation.value / 1e18).toFixed(8),
+          time: moment(new Date(operation.timestamp * 1000)).fromNow(),
+        }));
+        const newBlackholeInfo = {
+          balance: balance,
+          operations: operations,
+        };
+        setBlackholeInfo(newBlackholeInfo);
+      })
+      .catch((e) => {
+        setError(e);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    updateBlackholeInfo();
+    setInterval(updateBlackholeInfo, 60000);
+  }, []);
+
+  return {
+    blackholeInfo,
     loading,
     error,
   };
