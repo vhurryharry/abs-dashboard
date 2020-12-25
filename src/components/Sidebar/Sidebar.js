@@ -164,13 +164,10 @@ export default function Sidebar() {
               </li>
             </ul>
 
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
+            {/* <hr className="my-4 md:min-w-full" />
             <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               ABS Info
             </h6>
-            {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
@@ -192,7 +189,7 @@ export default function Sidebar() {
                   Updates
                 </Link>
               </li>
-            </ul>
+            </ul> */}
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />

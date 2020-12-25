@@ -3,4 +3,5 @@ export const tokenBurnAddresses = [
   "0x000000000000000000000000000000000000dead",
   "0x0000000000000000000000000000000000000000",
 ];
+export const uniswapPairAddress = "0x39c99091c0883287fea9e2f33529a3b8eed289de";
 export const ethplorerApiKey = "EK-v1Yoo-EUGHQUS-S1CUm";

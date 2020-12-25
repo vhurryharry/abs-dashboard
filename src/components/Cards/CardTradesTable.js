@@ -96,9 +96,9 @@ const CardTradesTable = ({ color = "light" }) => {
             </thead>
             <tbody>
               {trades &&
-                trades.map((trade) => {
+                trades.map((trade, index) => {
                   return (
-                    <tr>
+                    <tr key={trade.transaction.id + index}>
                       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
                         <i
                           className={`fas ${

@@ -1,11 +1,13 @@
 import { useQuery } from "@apollo/client";
 import { TRADES } from "../queries/trades";
 import moment from "moment";
+import { uniswapPairAddress } from "services/constants";
 
 const useTrades = (skip = 0, first = 10) => {
   const variables = {
     first,
     skip,
+    pair: uniswapPairAddress,
   };
 
   const { data } = useQuery(TRADES, {

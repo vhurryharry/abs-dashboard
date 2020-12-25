@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 
 export const TRADES = gql`
-  query trades($first: Int, $skip: Int) {
+  query trades($first: Int, $skip: Int, $pair: String) {
     trades: swaps(
       first: $first
       skip: $skip
-      where: { pair: "0x39c99091c0883287fea9e2f33529a3b8eed289de" }
+      where: { pair: $pair }
       orderBy: timestamp
       orderDirection: desc
     ) {

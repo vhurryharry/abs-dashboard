@@ -1,18 +1,13 @@
-// Copyright (C) 2020 Cartesi Pte. Ltd.
-
-// This program is free software: you can redistribute it and/or modify it under
-// the terms of the GNU General Public License as published by the Free Software
-// Foundation, either version 3 of the License, or (at your option) any later
-// version.
-
-// This program is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
 import { useEffect, useState } from "react";
 import axios from "axios";
+import moment from "moment";
 
-import { tokenAddress, tokenBurnAddresses, ethplorerApiKey } from "./constants";
+import {
+  tokenAddress,
+  tokenBurnAddresses,
+  ethplorerApiKey,
+  uniswapPairAddress,
+} from "./constants";
 
 const coingeckoApi = `https://api.coingecko.com/api/v3/coins/absorber`;
 const ethplorerApi = `https://api.ethplorer.io`;
@@ -248,11 +243,26 @@ export const useAccountInfo = (address = "") => {
     });
   };
 
+  const getTransactionHistory = (timestamp = null) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${ethplorerApi}/getAddressHistory/${address}?apiKey=${ethplorerApiKey}&token=${tokenAddress}`
+        )
+        .then(({ data }) => {
+          resolve(data.operations);
+        })
+        .catch((e) => {
+          reject(e.message);
+        });
+    });
+  };
+
   const updateAccountInfo = () => {
     setLoading(true);
     setError("");
 
-    Promise.all([getAccountInfo()])
+    Promise.all([getAccountInfo(), getTransactionHistory()])
       .then((results) => {
         const accountInfo = {
           abs: {
@@ -263,6 +273,25 @@ export const useAccountInfo = (address = "") => {
             ...results[0].eth,
             balance: +results[0].eth.balance.toFixed(5),
           },
+          operations: results[1].map((operation) => {
+            let type = operation.type;
+            if (type == "transfer") {
+              if (operation.from == uniswapPairAddress) {
+                type = "buy";
+              } else if (operation.to == uniswapPairAddress) {
+                type = "sell";
+              } else if (tokenBurnAddresses.includes(operation.to)) {
+                type = "burn";
+              }
+            }
+
+            return {
+              ...operation,
+              value: +(operation.value / 1e18).toFixed(8),
+              type,
+              time: moment(new Date(operation.timestamp * 1000)).fromNow(),
+            };
+          }),
         };
         setAccountInfo(accountInfo);
       })
