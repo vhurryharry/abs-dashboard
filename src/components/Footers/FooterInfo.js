@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FooterSmall(props) {
+const FooterInfo = (props) => {
   return (
     <>
       <footer
@@ -65,4 +65,6 @@ export default function FooterSmall(props) {
       </footer>
     </>
   );
-}
+};
+
+export default FooterInfo;

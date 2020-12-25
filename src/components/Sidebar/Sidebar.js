@@ -206,6 +206,18 @@ export default function Sidebar() {
               <li className="items-center">
                 <a
                   className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
+                  href="https://absorber.finance/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fas fa-globe text-gray-500 mr-2 text-sm"></i>{" "}
+                  Website
+                </a>
+              </li>
+
+              <li className="items-center">
+                <a
+                  className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                   href="https://twitter.com/DeFi_Absorber"
                   target="_blank"
                   rel="noopener noreferrer"

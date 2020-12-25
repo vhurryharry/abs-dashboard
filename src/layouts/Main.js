@@ -6,7 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import HeaderStats from "components/Headers/HeaderStats.js";
-import FooterAdmin from "components/Footers/FooterAdmin.js";
+import FooterMain from "components/Footers/FooterMain.js";
 
 // views
 
@@ -15,7 +15,7 @@ import Maps from "views/admin/Maps.js";
 import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
 
-export default function Admin() {
+const Main = () => {
   return (
     <>
       <Sidebar />
@@ -31,9 +31,11 @@ export default function Admin() {
             <Route path="/trades" exact component={Tables} />
             <Redirect from="*" to="/dashboard" />
           </Switch>
-          <FooterAdmin />
+          <FooterMain />
         </div>
       </div>
     </>
   );
-}
+};
+
+export default Main;

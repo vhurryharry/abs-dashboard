@@ -170,3 +170,51 @@ export const useHistoricalData = () => {
     error,
   };
 };
+
+export const useCommunityData = () => {
+  const [communityData, setCommunityData] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const getCommunityData = (currency = "usd") => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${coingeckoApi}?localization=false&tickers=false&market_data=false&community_data=true&developer_data=false&sparkline=false`
+        )
+        .then(({ data }) => {
+          resolve(data.community_data);
+        })
+        .catch((e) => {
+          reject(e.message);
+        });
+    });
+  };
+
+  const updateCommunityData = () => {
+    setLoading(true);
+    setError("");
+
+    Promise.all([getCommunityData()])
+      .then((results) => {
+        setCommunityData(results[0]);
+      })
+      .catch((e) => {
+        setError(e);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    updateCommunityData();
+    setInterval(updateCommunityData, 24 * 60 * 60 * 1000);
+  }, []);
+
+  return {
+    communityData,
+    loading,
+    error,
+  };
+};

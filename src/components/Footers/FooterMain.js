@@ -1,55 +1,63 @@
 import React from "react";
 
-export default function FooterAdmin() {
+const FooterMain = () => {
   return (
     <>
       <footer className="block py-4">
         <div className="container mx-auto px-4">
           <hr className="mb-4 border-b-1 border-gray-300" />
           <div className="flex flex-wrap items-center md:justify-between justify-center">
-            <div className="w-full md:w-4/12 px-4">
-              <div className="text-sm text-gray-600 font-semibold py-1 text-center md:text-left">
-                Copyright © {new Date().getFullYear()}{" "}
-                <a
-                  href="https://www.creative-tim.com?ref=nr-footer-admin"
-                  className="text-gray-600 hover:text-gray-800 text-sm font-semibold py-1"
-                >
-                  Creative Tim
-                </a>
-              </div>
-            </div>
+            <div className="w-full md:w-4/12 px-4"> </div>
             <div className="w-full md:w-8/12 px-4">
               <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                 <li>
                   <a
-                    href="https://www.creative-tim.com?ref=nr-footer-admin"
+                    href="https://absorber.finance/"
                     className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    Creative Tim
+                    Website
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://www.creative-tim.com/presentation?ref=nr-footer-admin"
+                    href="https://twitter.com/DeFi_Absorber"
                     className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    About Us
+                    Twitter
                   </a>
                 </li>
                 <li>
                   <a
-                    href="http://blog.creative-tim.com?ref=nr-footer-admin"
+                    href="https://absorberprotocol.medium.com/"
                     className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    Blog
+                    Medium
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://github.com/creativetimofficial/notus-react/blob/master/LICENSE.md?ref=nr-footer-admin"
+                    href="https://t.me/AbsorberProtocol"
                     className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    MIT License
+                    Telegram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://discord.gg/MK4s9vDGEY"
+                    className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Discord
                   </a>
                 </li>
               </ul>
@@ -59,4 +67,6 @@ export default function FooterAdmin() {
       </footer>
     </>
   );
-}
+};
+
+export default FooterMain;
