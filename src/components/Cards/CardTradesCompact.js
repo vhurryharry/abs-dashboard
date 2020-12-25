@@ -5,9 +5,8 @@ import moment from "moment";
 
 // components
 
-const CardTrades = () => {
+const CardTradesCompact = () => {
   const trades = useTrades(0, 5);
-  console.log(trades);
 
   return (
     <>
@@ -52,64 +51,26 @@ const CardTrades = () => {
             <tbody>
               {trades &&
                 trades.map((trade) => {
-                  let type = "buy",
-                    absAmount = 0,
-                    ethAmount = 0,
-                    price = 0;
-
-                  trade = {
-                    ...trade,
-                    amount0In: parseFloat(trade.amount0In),
-                    amount0Out: parseFloat(trade.amount0Out),
-                    amount1In: parseFloat(trade.amount1In),
-                    amount1Out: parseFloat(trade.amount1Out),
-                    amountUSD: parseFloat(trade.amountUSD),
-                  };
-
-                  if (trade.pair.token0.symbol == "ABS") {
-                    if (trade.amount0In > 0) {
-                      type = "sell";
-                      absAmount = trade.amount0In;
-                      ethAmount = trade.amount1Out;
-                    } else {
-                      absAmount = trade.amount0Out;
-                      ethAmount = trade.amount1In;
-                    }
-                  } else {
-                    if (trade.amount1In > 0) {
-                      type = "sell";
-                      absAmount = trade.amount1In;
-                      ethAmount = trade.amount0Out;
-                    } else {
-                      absAmount = trade.amount1Out;
-                      ethAmount = trade.amount0In;
-                    }
-                  }
-                  price = absAmount ? trade.amountUSD / absAmount : 0;
-                  const txTime = new Date(
-                    parseInt(trade.transaction.timestamp) * 1000
-                  );
-
                   return (
                     <tr key={trade.id}>
                       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                         <i
                           className={`fas ${
-                            type == "buy"
+                            trade.type == "buy"
                               ? "fa-arrow-up text-green-500"
                               : "fa-arrow-down text-red-500"
                           } mr-4`}
                         ></i>
-                        ${+price.toFixed(8)}
+                        ${+trade.price.toFixed(8)}
                       </th>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                        {moment(txTime).fromNow()}
+                        {trade.time}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                        {+absAmount.toFixed(8)}
+                        {(+trade.absAmount.toFixed(8)).toLocaleString()}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                        {+ethAmount.toFixed(8)}
+                        {(+trade.ethAmount.toFixed(8)).toLocaleString()}
                       </td>
                     </tr>
                   );
@@ -122,4 +83,4 @@ const CardTrades = () => {
   );
 };
 
-export default CardTrades;
+export default CardTradesCompact;

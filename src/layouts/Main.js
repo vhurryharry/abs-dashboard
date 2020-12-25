@@ -13,7 +13,7 @@ import FooterMain from "components/Footers/FooterMain.js";
 import Dashboard from "views/admin/Dashboard.js";
 import Maps from "views/admin/Maps.js";
 import Settings from "views/admin/Settings.js";
-import Tables from "views/admin/Tables.js";
+import Trades from "views/admin/Trades.js";
 
 const Main = () => {
   return (
@@ -28,7 +28,7 @@ const Main = () => {
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/blackhole" exact component={Maps} />
             <Route path="/stats" exact component={Settings} />
-            <Route path="/trades" exact component={Tables} />
+            <Route path="/trades" exact component={Trades} />
             <Redirect from="*" to="/dashboard" />
           </Switch>
           <FooterMain />

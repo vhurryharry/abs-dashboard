@@ -159,7 +159,7 @@ export default function Sidebar() {
                         : "text-gray-400")
                     }
                   ></i>{" "}
-                  Recent Trades
+                  Trade History
                 </Link>
               </li>
             </ul>

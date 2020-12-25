@@ -18,7 +18,14 @@ const coingeckoApi = `https://api.coingecko.com/api/v3/coins/absorber`;
 const ethplorerApi = `https://api.ethplorer.io`;
 
 export const useMarketInformation = () => {
-  const [marketInformation, setMarketInformation] = useState({});
+  const [marketInformation, setMarketInformation] = useState({
+    price: 0,
+    volume: 0,
+    priceChange: 0,
+    marketCap: 0,
+    circulatingSupply: 0,
+  });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
