@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Navbar() {
+const Navbar = () => {
   return (
     <>
       {/* Navbar */}
@@ -15,15 +15,16 @@ export default function Navbar() {
             Dashboard
           </a>
           {/* Form */}
-          {/* <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-            <div className="relative flex w-full flex-wrap items-stretch">
-              <input
-                type="button"
-                value="Uniswap"
-                className="px-5 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
-              />
-            </div>
-          </form> */}
+          <div className="md:flex hidden uppercase flex-row flex-wrap items-center lg:ml-auto mr-3">
+            <a
+              className="text-white text-sm hidden lg:inline-block font-semibold"
+              href="https://info.uniswap.org/pair/0x39c99091c0883287fea9e2f33529a3b8eed289de"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Uniswap
+            </a>
+          </div>
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
             {/* <UserDropdown /> */}
@@ -33,4 +34,6 @@ export default function Navbar() {
       {/* End Navbar */}
     </>
   );
-}
+};
+
+export default Navbar;

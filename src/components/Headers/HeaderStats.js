@@ -37,7 +37,7 @@ const HeaderStats = () => {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="Trading Volume"
+                  statSubtitle="24h Volume"
                   statTitle={"$" + marketInformation.volume}
                   statIconName="fas fa-users"
                   statIconColor="bg-pink-500"

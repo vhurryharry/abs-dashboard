@@ -60,6 +60,16 @@ const FooterMain = () => {
                     Discord
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="https://etherscan.io/token/0xf4c05296c449edcee3e3f1524fac919510b168a2"
+                    className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Etherscan
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

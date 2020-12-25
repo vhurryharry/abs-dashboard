@@ -10,14 +10,24 @@ import "assets/styles/tailwind.css";
 import Main from "layouts/Main.js";
 import Info from "layouts/Info.js";
 
-ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route path="/auth" component={Info} />
-      <Route path="/" component={Main} />
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 
-      <Redirect from="*" to="/" />
-    </Switch>
-  </BrowserRouter>,
+const client = new ApolloClient({
+  uri: "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
+  cache: new InMemoryCache(),
+});
+
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/auth" component={Info} />
+        <Route path="/" component={Main} />
+
+        <Redirect from="*" to="/" />
+      </Switch>
+    </BrowserRouter>
+  </ApolloProvider>,
   document.getElementById("root")
 );
