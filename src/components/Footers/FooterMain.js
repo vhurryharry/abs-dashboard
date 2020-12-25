@@ -17,7 +17,7 @@ const FooterMain = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Website
+                    <i className="fas fa-globe text-gray-500 mr-2 text-sm"></i>
                   </a>
                 </li>
                 <li>
@@ -27,7 +27,7 @@ const FooterMain = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Twitter
+                    <i className="fab fa-twitter text-gray-500 mr-2 text-sm"></i>
                   </a>
                 </li>
                 <li>
@@ -37,7 +37,7 @@ const FooterMain = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Medium
+                    <i className="fab fa-medium-m text-gray-500 mr-2 text-sm"></i>
                   </a>
                 </li>
                 <li>
@@ -47,7 +47,7 @@ const FooterMain = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Telegram
+                    <i className="fab fa-telegram-plane text-gray-500 mr-2 text-sm"></i>
                   </a>
                 </li>
                 <li>
@@ -57,7 +57,7 @@ const FooterMain = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Discord
+                    <i className="fab fa-discord text-gray-500 mr-2 text-sm"></i>
                   </a>
                 </li>
                 <li>
@@ -67,7 +67,7 @@ const FooterMain = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Etherscan
+                    <i className="fab fa-ethereum text-gray-500 mr-2 text-sm"></i>
                   </a>
                 </li>
               </ul>

@@ -31,7 +31,7 @@ const UserDropdown = () => {
             <img
               alt="..."
               className="w-full rounded-full align-middle border-none shadow-lg"
-              src={require("assets/img/uniswap.svg")}
+              src="images/uniswap.svg"
             />
           </span>
         </div>

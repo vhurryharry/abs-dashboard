@@ -21,7 +21,7 @@ export default function Register() {
                     <img
                       alt="..."
                       className="w-5 mr-1"
-                      src={require("assets/img/uniswap.svg")}
+                      src="images/uniswap.svg"
                     />
                     Github
                   </button>
@@ -32,7 +32,7 @@ export default function Register() {
                     <img
                       alt="..."
                       className="w-5 mr-1"
-                      src={require("assets/img/uniswap.svg")}
+                      src="images/uniswap.svg"
                     />
                     Google
                   </button>

@@ -1400,6 +1400,10 @@ video {
   height: 100vh;
 }
 
+.h-30-px {
+  height: 30px;
+}
+
 .h-95-px {
   height: 95px;
 }

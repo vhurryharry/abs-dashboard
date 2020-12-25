@@ -5,7 +5,7 @@ import React from "react";
 import CardSettings from "components/Cards/CardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
 
-export default function Settings() {
+const MyStats = () => {
   return (
     <>
       <div className="flex flex-wrap">
@@ -18,4 +18,6 @@ export default function Settings() {
       </div>
     </>
   );
-}
+};
+
+export default MyStats;

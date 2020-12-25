@@ -11,8 +11,8 @@ import FooterMain from "components/Footers/FooterMain.js";
 // views
 
 import Dashboard from "views/admin/Dashboard.js";
-import Maps from "views/admin/Maps.js";
-import Settings from "views/admin/Settings.js";
+import Blackhole from "views/admin/Blackhole.js";
+import MyStats from "views/admin/MyStats.js";
 import Trades from "views/admin/Trades.js";
 
 const Main = () => {
@@ -26,8 +26,8 @@ const Main = () => {
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Switch>
             <Route path="/dashboard" exact component={Dashboard} />
-            <Route path="/blackhole" exact component={Maps} />
-            <Route path="/stats" exact component={Settings} />
+            <Route path="/blackhole" exact component={Blackhole} />
+            <Route path="/stats" exact component={MyStats} />
             <Route path="/trades" exact component={Trades} />
             <Redirect from="*" to="/dashboard" />
           </Switch>
