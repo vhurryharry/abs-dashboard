@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Sidebar() {
+export default function Sidebar({ isDark, setIsDark }) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>
@@ -18,9 +18,13 @@ export default function Sidebar() {
           </button>
           {/* Brand */}
           <Link
-            className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
+            className="flex items-center text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
             to={`${process.env.PUBLIC_URL}/`}
           >
+            <img
+              className="h-30-px w-auto rounded-full align-middle border-none mr-2"
+              src="images/logo.png"
+            />
             Absorber.Finance
           </Link>
           {/* Collapse */}
@@ -48,6 +52,26 @@ export default function Sidebar() {
                     onClick={() => setCollapseShow("hidden")}
                   >
                     <i className="fas fa-times"></i>
+                  </button>
+                </div>
+                <div className="w-6/12">
+                  <button
+                    type="button"
+                    className={`px-4 py-2 rounded border ${
+                      isDark ? "" : "bg-gray-100"
+                    }`}
+                    onClick={() => setIsDark(false)}
+                  >
+                    {" ☀ "}
+                  </button>
+                  <button
+                    type="button"
+                    className={`px-4 py-2 rounded border ml-2 ${
+                      !isDark ? "" : "bg-gray-100"
+                    }`}
+                    onClick={() => setIsDark(true)}
+                  >
+                    {" ☾ "}
                   </button>
                 </div>
               </div>
@@ -212,6 +236,18 @@ export default function Sidebar() {
               <li className="items-center">
                 <a
                   className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
+                  href="https://info.uniswap.org/pair/0x39c99091c0883287fea9e2f33529a3b8eed289de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fas fa-sync-alt text-gray-500 mr-2 text-sm"></i>{" "}
+                  Uniswap
+                </a>
+              </li>
+
+              <li className="items-center">
+                <a
+                  className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                   href="https://twitter.com/DeFi_Absorber"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -266,6 +302,18 @@ export default function Sidebar() {
                 >
                   <i className="fab fa-ethereum text-gray-500 mr-2 text-sm"></i>{" "}
                   Etherscan
+                </a>
+              </li>
+
+              <li className="items-center">
+                <a
+                  className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
+                  href="https://www.dextools.io/app/uniswap/pair-explorer/0x39c99091c0883287fea9e2f33529a3b8eed289de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fas fa-tools text-gray-500 mr-2 text-sm"></i>{" "}
+                  Dextools
                 </a>
               </li>
             </ul>

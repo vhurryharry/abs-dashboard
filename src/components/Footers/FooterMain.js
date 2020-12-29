@@ -22,6 +22,16 @@ const FooterMain = () => {
                 </li>
                 <li>
                   <a
+                    href="https://info.uniswap.org/pair/0x39c99091c0883287fea9e2f33529a3b8eed289de"
+                    className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className="fas fa-sync-alt text-gray-500 mr-2 text-sm"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="https://twitter.com/DeFi_Absorber"
                     className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                     target="_blank"
@@ -68,6 +78,16 @@ const FooterMain = () => {
                     rel="noopener noreferrer"
                   >
                     <i className="fab fa-ethereum text-gray-500 mr-2 text-sm"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.dextools.io/app/uniswap/pair-explorer/0x39c99091c0883287fea9e2f33529a3b8eed289de"
+                    className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className="fas fa-tools text-gray-500 mr-2 text-sm"></i>
                   </a>
                 </li>
               </ul>

@@ -7,7 +7,7 @@ const Navbar = ({ isDark, setIsDark }) => {
       <nav className="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-no-wrap md:justify-start flex items-center p-4">
         <div className="w-full mx-autp items-center flex justify-between md:flex-no-wrap flex-wrap md:px-10 px-4 my-4">
           {/* Brand */}
-          <div>
+          <div className="md:flex hidden uppercase">
             <button
               type="button"
               className={`px-4 py-2 rounded border ${

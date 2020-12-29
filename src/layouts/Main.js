@@ -25,7 +25,7 @@ const Main = () => {
   return (
     <div className={isDark ? "dark" : ""}>
       <div className="text-gray-800">
-        <Sidebar />
+        <Sidebar isDark={isDark} setIsDark={setIsDark} />
         <div className="relative md:ml-64 bg-gray-200">
           <MainNavbar isDark={isDark} setIsDark={setIsDark} />
           {/* Header */}
