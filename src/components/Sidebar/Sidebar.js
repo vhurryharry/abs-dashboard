@@ -2,9 +2,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
-
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
@@ -22,7 +19,7 @@ export default function Sidebar() {
           {/* Brand */}
           <Link
             className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
-            to="/"
+            to={`${process.env.PUBLIC_URL}/`}
           >
             Absorber.Finance
           </Link>
@@ -39,7 +36,7 @@ export default function Sidebar() {
                 <div className="w-6/12">
                   <Link
                     className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
-                    to="/"
+                    to={`${process.env.PUBLIC_URL}/`}
                   >
                     Absorber.Finance
                   </Link>
@@ -83,7 +80,7 @@ export default function Sidebar() {
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-600")
                   }
-                  to="/dashboard"
+                  to={`${process.env.PUBLIC_URL}/dashboard`}
                 >
                   <i
                     className={
@@ -105,7 +102,7 @@ export default function Sidebar() {
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-600")
                   }
-                  to="/stats"
+                  to={`${process.env.PUBLIC_URL}/stats`}
                 >
                   <i
                     className={
@@ -127,7 +124,7 @@ export default function Sidebar() {
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-600")
                   }
-                  to="/blackhole"
+                  to={`${process.env.PUBLIC_URL}/blackhole`}
                 >
                   <i
                     className={
@@ -149,7 +146,7 @@ export default function Sidebar() {
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-600")
                   }
-                  to="/trades"
+                  to={`${process.env.PUBLIC_URL}/trades`}
                 >
                   <i
                     className={

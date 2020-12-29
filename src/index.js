@@ -27,9 +27,9 @@ const connectors = { MetaMask };
 ReactDOM.render(
   <Web3Provider connectors={connectors} libraryName="ethers.js">
     <ApolloProvider client={client}>
-      <BrowserRouter>
+      <BrowserRouter basename={"/app"}>
         <Switch>
-          <Route path="/" component={Main} />
+          <Route path={`${process.env.PUBLIC_URL}/`} component={Main} />
 
           <Redirect from="*" to="/" />
         </Switch>
