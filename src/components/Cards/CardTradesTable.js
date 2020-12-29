@@ -95,7 +95,7 @@ const CardTradesTable = ({ color = "light" }) => {
               </tr>
             </thead>
             <tbody>
-              {trades &&
+              {trades ? (
                 trades.map((trade, index) => {
                   return (
                     <tr key={trade.transaction.id + index}>
@@ -132,7 +132,14 @@ const CardTradesTable = ({ color = "light" }) => {
                       </td>
                     </tr>
                   );
-                })}
+                })
+              ) : (
+                <tr>
+                  <td colSpan={6} className="text-center">
+                    <i className="fas fa-spinner fa-spin"></i>
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

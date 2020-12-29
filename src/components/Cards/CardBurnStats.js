@@ -5,7 +5,7 @@ import { useBlackholeInfo } from "services/Market";
 // components
 
 const CardBurnStats = () => {
-  const { blackholeInfo } = useBlackholeInfo();
+  const { blackholeInfo, loading } = useBlackholeInfo();
 
   return (
     <>
@@ -44,46 +44,55 @@ const CardBurnStats = () => {
                 </tr>
               </thead>
               <tbody className="text-sm">
-                {blackholeInfo &&
-                  tokenBurnAddresses.map((address, index) => {
-                    return (
-                      <tr key={address}>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-no-wrap p-2">
-                          {index + 1}
-                        </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-no-wrap p-2">
-                          <a
-                            href={`https://etherscan.io/address/${address}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {address}
-                          </a>
-                        </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-no-wrap p-2">
-                          {+blackholeInfo[address].toFixed(5)} ABS
-                        </td>
-                      </tr>
-                    );
-                  })}
-                <tr>
-                  <td></td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 font-bold whitespace-no-wrap p-2 text-right">
-                    Total Burned Amount
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 font-bold whitespace-no-wrap p-2">
-                    {blackholeInfo?.sum} ABS
-                  </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 font-bold whitespace-no-wrap p-2 text-right">
-                    Avg Daily Burning Amount
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 font-bold whitespace-no-wrap p-2">
-                    {blackholeInfo?.avg} ABS
-                  </td>
-                </tr>
+                {blackholeInfo ? (
+                  <>
+                    {tokenBurnAddresses.map((address, index) => {
+                      return (
+                        <tr key={address}>
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-no-wrap p-2">
+                            {index + 1}
+                          </td>
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-no-wrap p-2">
+                            <a
+                              href={`https://etherscan.io/address/${address}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {address}
+                            </a>
+                          </td>
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-no-wrap p-2">
+                            {+blackholeInfo[address].toFixed(5)} ABS
+                          </td>
+                        </tr>
+                      );
+                    })}
+                    <tr>
+                      <td></td>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 font-bold whitespace-no-wrap p-2 text-right">
+                        Total Burned Amount
+                      </td>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 font-bold whitespace-no-wrap p-2">
+                        {blackholeInfo?.sum} ABS
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 font-bold whitespace-no-wrap p-2 text-right">
+                        Avg Daily Burning Amount
+                      </td>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 font-bold whitespace-no-wrap p-2">
+                        {blackholeInfo?.avg} ABS
+                      </td>
+                    </tr>
+                  </>
+                ) : (
+                  <tr>
+                    <td colSpan={3} className="text-center">
+                      <i className="fas fa-spinner fa-spin"></i>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

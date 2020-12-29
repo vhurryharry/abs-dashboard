@@ -90,7 +90,7 @@ export default function Sidebar() {
                       "fas fa-tv mr-2 text-sm " +
                       (window.location.href.indexOf("/dashboard") !== -1
                         ? "opacity-75"
-                        : "text-gray-400")
+                        : "text-gray-500")
                     }
                   ></i>{" "}
                   Summary
@@ -112,7 +112,7 @@ export default function Sidebar() {
                       "fas fa-hand-holding-usd mr-2 text-sm " +
                       (window.location.href.indexOf("/stats") !== -1
                         ? "opacity-75"
-                        : "text-gray-400")
+                        : "text-gray-500")
                     }
                   ></i>{" "}
                   My Stats
@@ -134,7 +134,7 @@ export default function Sidebar() {
                       "fas fa-infinity mr-2 text-sm " +
                       (window.location.href.indexOf("/blackhole") !== -1
                         ? "opacity-75"
-                        : "text-gray-400")
+                        : "text-gray-500")
                     }
                   ></i>{" "}
                   Blackhole Stats
@@ -156,7 +156,7 @@ export default function Sidebar() {
                       "fas fa-comments-dollar mr-2 text-sm " +
                       (window.location.href.indexOf("/trades") !== -1
                         ? "opacity-75"
-                        : "text-gray-400")
+                        : "text-gray-500")
                     }
                   ></i>{" "}
                   Trade History

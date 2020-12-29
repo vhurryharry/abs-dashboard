@@ -32,9 +32,6 @@ const CardLineChart = ({ data }) => {
             fontColor: "rgba(0,0,0,.4)",
           },
           legend: {
-            labels: {
-              fontColor: "rgba(0,0,0,.4)",
-            },
             align: "end",
             position: "bottom",
           },
@@ -49,13 +46,9 @@ const CardLineChart = ({ data }) => {
           scales: {
             xAxes: [
               {
-                ticks: {
-                  fontColor: "rgba(0,0,0,.6)",
-                },
                 display: true,
                 scaleLabel: {
                   display: false,
-                  fontColor: "rgba(0,0,0,.4)",
                 },
                 gridLines: {
                   display: false,
@@ -70,13 +63,9 @@ const CardLineChart = ({ data }) => {
             ],
             yAxes: [
               {
-                ticks: {
-                  fontColor: "rgba(0,0,0,.6)",
-                },
                 display: true,
                 scaleLabel: {
                   display: false,
-                  fontColor: "rgba(0,0,0,.4)",
                 },
                 gridLines: {
                   borderDash: [3],

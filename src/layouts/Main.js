@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
@@ -16,25 +16,29 @@ import MyStats from "views/admin/MyStats.js";
 import Trades from "views/admin/Trades.js";
 
 const Main = () => {
+  const [isDark, setIsDark] = useState(false);
+
   return (
-    <>
-      <Sidebar />
-      <div className="relative md:ml-64 bg-gray-200">
-        <MainNavbar />
-        {/* Header */}
-        <HeaderStats />
-        <div className="px-4 md:px-10 mx-auto w-full -m-24">
-          <Switch>
-            <Route path="/dashboard" exact component={Dashboard} />
-            <Route path="/blackhole" exact component={Blackhole} />
-            <Route path="/stats" exact component={MyStats} />
-            <Route path="/trades" exact component={Trades} />
-            <Redirect from="*" to="/dashboard" />
-          </Switch>
-          <FooterMain />
+    <div className={isDark ? "dark" : ""}>
+      <div className="text-gray-800">
+        <Sidebar />
+        <div className="relative md:ml-64 bg-gray-200">
+          <MainNavbar isDark={isDark} setIsDark={setIsDark} />
+          {/* Header */}
+          <HeaderStats />
+          <div className="px-4 md:px-10 mx-auto w-full h-full -m-24">
+            <Switch>
+              <Route path="/dashboard" exact component={Dashboard} />
+              <Route path="/blackhole" exact component={Blackhole} />
+              <Route path="/stats" exact component={MyStats} />
+              <Route path="/trades" exact component={Trades} />
+              <Redirect from="*" to="/dashboard" />
+            </Switch>
+            <FooterMain />
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

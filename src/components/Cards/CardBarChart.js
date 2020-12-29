@@ -40,9 +40,6 @@ const CardBarChart = ({ data }) => {
             intersect: true,
           },
           legend: {
-            labels: {
-              fontColor: "rgba(0,0,0,.4)",
-            },
             align: "end",
             position: "bottom",
           },

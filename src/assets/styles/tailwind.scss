@@ -1012,7 +1012,7 @@ video {
 
 .bg-yellow-500 {
   --bg-opacity: 1;
-  background-color: #ecc94b;
+  background-color: #ffd600;
   background-color: rgba(236, 201, 75, var(--bg-opacity));
 }
 
@@ -1066,8 +1066,12 @@ video {
 
 .bg-blue-500 {
   --bg-opacity: 1;
-  background-color: #4299e1;
+  background-color: #11cdef;
   background-color: rgba(66, 153, 225, var(--bg-opacity));
+}
+
+.bg-gradient {
+  background: linear-gradient(87deg, #11cdef, #1171ef) !important;
 }
 
 .bg-blue-600 {
@@ -1149,7 +1153,7 @@ video {
 }
 
 .bg-full {
-  background-size: 100$;
+  background-size: 100%;
 }
 
 .border-collapse {
@@ -2262,13 +2266,13 @@ video {
 
 .text-red-500 {
   --text-opacity: 1;
-  color: #f56565;
+  color: #f5365c;
   color: rgba(245, 101, 101, var(--text-opacity));
 }
 
 .text-orange-500 {
   --text-opacity: 1;
-  color: #ed8936;
+  color: #fb6340;
   color: rgba(237, 137, 54, var(--text-opacity));
 }
 
