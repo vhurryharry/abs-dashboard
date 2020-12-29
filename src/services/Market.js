@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
 
-import { tokenBurnAddresses, uniswapPairAddress } from "./constants";
+import {
+  startBurningAmount,
+  tokenBurnAddresses,
+  tokenLaunchDate,
+  uniswapPairAddress,
+} from "./constants";
 
 import {
   getCoingeckoInfo,
@@ -219,21 +224,18 @@ export const useBlackholeInfo = () => {
     Promise.all([
       getAccountInfo(tokenBurnAddresses[0]),
       getAccountInfo(tokenBurnAddresses[1]),
-      getTransactionHistory(tokenBurnAddresses[0]),
     ])
       .then((results) => {
         const balance = +(
           results[0].abs.balance / 1e18 +
           results[1].abs.balance / 1e18
         ).toFixed(5);
-        const operations = results[2].map((operation) => ({
-          ...operation,
-          value: +(operation.value / 1e18).toFixed(8),
-          time: moment(new Date(operation.timestamp * 1000)).fromNow(),
-        }));
+        const uptimeDays = moment().diff(moment(tokenLaunchDate), "days");
         const newBlackholeInfo = {
-          balance: balance,
-          operations: operations,
+          [tokenBurnAddresses[0]]: results[0].abs.balance / 1e18,
+          [tokenBurnAddresses[1]]: results[1].abs.balance / 1e18,
+          sum: balance,
+          avg: (balance - startBurningAmount) / uptimeDays,
         };
         setBlackholeInfo(newBlackholeInfo);
       })
