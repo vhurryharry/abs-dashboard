@@ -34,7 +34,7 @@ const CardBurnStats = () => {
               <li>- Anyone can contribute to the Blackhole</li>
             </ul>
           </div>
-          <div className="pt-6">
+          <div className="pt-6 overflow-x-auto">
             <table>
               <thead className="text-left">
                 <tr>
