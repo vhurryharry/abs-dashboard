@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
@@ -16,7 +16,11 @@ import MyStats from "views/admin/MyStats.js";
 import Trades from "views/admin/Trades.js";
 
 const Main = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(localStorage.getItem("mode") == "dark");
+
+  useEffect(() => {
+    localStorage.setItem("mode", isDark ? "dark" : "light");
+  }, [isDark]);
 
   return (
     <div className={isDark ? "dark" : ""}>
