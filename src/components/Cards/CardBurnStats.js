@@ -21,8 +21,12 @@ const CardBurnStats = () => {
             <span className="font-bold">What is the Blackhole?</span>
             <ul>
               <li>
-                - The blackhole is the Ethereum burn address where 445k RFI
-                tokens were sent.
+                - The blackhole is the Ethereum burn address where{" "}
+                {(
+                  (blackholeInfo && blackholeInfo.sum ? blackholeInfo.sum : 0) /
+                  1000
+                ).toFixed(0)}
+                k ABS tokens were sent.
               </li>
               <li>
                 - These tokens are out of circulation, but the address continues
